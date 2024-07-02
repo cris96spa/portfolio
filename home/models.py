@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 
@@ -31,3 +32,17 @@ class Contact(models.Model):
     
     def __str__(self):
         return self.name
+    
+class SkillCategory(models.Model):
+    name = models.CharField(max_length=100)
+    tag = models.CharField(max_length=100)
+    def __str__(self):
+        return self.name
+
+class Skill(models.Model):
+    name = models.CharField(max_length=100)
+    category = models.ForeignKey(SkillCategory, on_delete=models.CASCADE)
+    level = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)])
+    def __str__(self):
+        return self.name
+    

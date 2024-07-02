@@ -521,7 +521,7 @@ section {
   margin-bottom: 30px;
 }
 
-.portfolio #portfolio-flters {
+.portfolio #portfolio-filters {
   padding: 0;
   margin: 0 auto 35px auto;
   list-style: none;
@@ -531,7 +531,7 @@ section {
   padding: 2px 15px;
 }
 
-.portfolio #portfolio-flters li {
+.portfolio #portfolio-filters li {
   cursor: pointer;
   display: inline-block;
   padding: 10px 15px 8px 15px;
@@ -544,12 +544,12 @@ section {
   transition: all 0.3s ease-in-out;
 }
 
-.portfolio #portfolio-flters li:hover,
-.portfolio #portfolio-flters li.filter-active {
+.portfolio #portfolio-filters li:hover,
+.portfolio #portfolio-filters li.filter-active {
   color: #149ddd;
 }
 
-.portfolio #portfolio-flters li:last-child {
+.portfolio #portfolio-filters li:last-child {
   margin-right: 0;
 }
 
@@ -900,7 +900,9 @@ section {
 
 .contact .info .email:hover i,
 .contact .info .address:hover i,
-.contact .info .phone:hover i {
+.contact .info .phone:hover i,
+.contact .info .linkedin:hover i,
+.contact .info .github:hover i {
   background: #149ddd;
   color: #fff;
 }
@@ -990,7 +992,7 @@ section {
 }
 
 .contact .php-email-form button[type=submit] {
-  background: #149ddd;
+  background: var(--dark-color);
   border: 0;
   padding: 10px 24px;
   color: #fff;
@@ -999,7 +1001,7 @@ section {
 }
 
 .contact .php-email-form button[type=submit]:hover {
-  background: #37b3ed;
+  background: var(--primary-color);
 }
 
 @-webkit-keyframes animate-loading {
@@ -1199,31 +1201,103 @@ section {
 }
 
 /* Cards */
-.card {
-  background-color: var(--background);
-  padding: var(--card-padding);
-  border-radius: var(--card-radius);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-}
-.card .spacer {
-  margin-top: 0;
-  border-radius: 100%;
-}
-.card .icon {
-  color: var(--primary-color);
-}
-.card.interactive {
-  cursor: pointer;
-  transition: 0.35s box-shadow ease-in-out;
-}
-.card.interactive:hover, .card.interactive:focus {
-  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
-}
-a.card, a .card {
-  color: initial;
-  text-decoration: none;
+
+.card-container {
+  perspective: 1000px; 
+  height: 350px;
+  position: relative; /* Positioning context for absolute children */
+  transform-style: preserve-3d;
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  text-align: center; /* Ensure text is centered */
 }
 
+.card {
+  width: 100%; /* Ensures that the card takes the full width of its container */
+  height: 300px; /* Fixed height for all cards */
+  display: flex; /* Using Flexbox for alignment */
+  flex-direction: column; /* Stack children vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  text-align: center; /* Ensure text is centered */
+  transition: transform 0.8s; /* Smooth transition for flipping */
+  transform-style: preserve-3d; /* Necessary for 3D flip */
+  position: relative;
+}
+
+.card .front, .card .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card .back {
+  transform: rotateY(180deg); /* Already existing rotation */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+  position: absolute; /* Ensures the back covers the whole card */
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+/* Additional rotation to make text appear right-side up */
+.card.flipped .back {
+  transform: rotateY(0deg); /* This resets rotation when the card is flipped */
+}
+
+/* ... (other card styles) */
+.card .front,
+.card .back {
+    transition: opacity 0.6s ease-in-out; /* Add opacity transition */
+}
+
+
+.card .top-text {
+  margin-top: 0px; /* Adjust top margin for better spacing */
+  padding: 5px 10px; /* Reduced padding for the text block */
+}
+
+
+.github-link {
+  margin-top: 10px; /* Space above the GitHub link */
+}
+
+
+.github-link:hover {
+  background-color: var(--primary-color); /* Slightly lighter on hover */
+}
+
+.item .title, .item .tag {
+  font-size: 1em; /* Adjust based on your design */
+  white-space: nowrap; /* Prevents text from wrapping */
+  overflow: hidden; /* Prevents text overflow outside the element */
+  text-overflow: ellipsis; /* Adds ellipsis if text overflows */
+  padding: 0 10px; /* Adds padding on the sides */
+}
+
+.portfolio-item {
+  margin-bottom: 30px;
+  flex: 0 1 calc(33.333% - 20px); /* Three items per row with spacing */
+  box-sizing: border-box;
+  padding: 10px; /* Padding inside each item */
+}
+
+@media (max-width: 768px) {
+  .portfolio-item {
+      flex: 0 1 100%; /* 100% width on smaller screens */
+  }
+}
 
 .item:hover {
   box-shadow: 0 8px 16px rgba(0,0,0,0.2);
@@ -1233,10 +1307,10 @@ a.card, a .card {
 }
 /* Adjust spacer div size and style */
 .item .spacer {
-  width: 100px; /* Set the desired width */
-  height: 100px; /* Set the desired height */
+  width: 120px; /* Set the desired width */
+  height: 120px; /* Set the desired height */
   margin: 0 auto 10px;
-  border-radius: 50%; /* Make the spacer div rounded */
+  border-radius: 100%; /* Make the spacer div rounded */
   background: #f8f9fa; /* Background color */
   padding: 15px; /* Add padding */
   position: relative; /* Needed for the pseudo-element */
@@ -1297,4 +1371,91 @@ a.card, a .card {
   --bs-btn-disabled-color: #fff;
   --bs-btn-disabled-bg: #var(--primary-color);
   --bs-btn-disabled-border-color: var(--primary-color);
+}
+
+
+.skills-content {
+  max-height: 400px;  /* Maximum height before scrollbar appears */
+  overflow-y: auto;  /* Enables vertical scrolling */
+  padding-right: 15px;  /* Adds some space on the right for scrollbar */
+}
+
+.portfolio-container {
+  max-height: 800px;  /* Maximum height before scrollbar appears */
+  overflow-y: auto;  /* Enables vertical scrolling */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center; /* This centers the items horizontally */
+  align-items: start; /* Align items from the start vertically */
+  gap: 30px; /* Optional: Adds space between the items */
+}
+
+.custom-link-contact {
+  margin-top: 0;
+  padding: 0 0 0px 60px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #173b6c;
+  display: block;
+}
+
+.custom-link-contact {
+  margin-top: 0;
+  padding: 0 0 0px 60px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #173b6c;
+  display: block;
+}
+
+.custom-link-contact:hover {
+  text-decoration: underline; /* Underline on hover (optional) */
+}
+.custom-link-contact:active {
+  color: var(--dark-color); /* Darker color when the link is clicked */
+}
+
+.custom-link {
+    color: black;
+}
+.custom-link:hover {
+  text-decoration: underline; /* Underline on hover (optional) */
+}
+.custom-link:active {
+  color: var(--dark-color); /* Darker color when the link is clicked */
+}
+
+.copyright-link{
+  color: var(--dark-color);
+}
+.copyright-link:hover {
+  text-decoration: underline; /* Underline on hover (optional) */
+}
+
+.copyright-link:active {
+  color: var(--primary-color); /* Darker color when the link is clicked */
+}
+
+
+.form-control {
+  width: 100%; /* Full width */
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc; /* Light grey border */
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* Box sizing */
+}
+
+.form-group label {
+  font-weight: bold; /* Bold labels */
+}
+.loading, .sent-message, .error-message {
+  display: none;
+  font-size: 14px;
+  margin-top: 10px;
+}
+.d-block {
+  display: block;
 }

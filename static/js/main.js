@@ -168,9 +168,9 @@
         itemSelector: '.portfolio-item'
       });
 
-      let portfolioFilters = select('#portfolio-flters li', true);
+      let portfolioFilters = select('#portfolio-filters li', true);
 
-      on('click', '#portfolio-flters li', function(e) {
+      on('click', '#portfolio-filters li', function(e) {
         e.preventDefault();
         portfolioFilters.forEach(function(el) {
           el.classList.remove('filter-active');
@@ -185,7 +185,30 @@
         });
       }, true);
     }
+    // Initialize Skills Isotope
+    let skillsContainer = document.querySelector('.skills-content');
+    if (skillsContainer) {
+      let skillsIsotope = new Isotope(skillsContainer, {
+        itemSelector: '.portfolio-item'
+      });
 
+      let skillsFilters = document.querySelectorAll('#skills-filters li');
+
+      skillsFilters.forEach(filter => {
+        filter.addEventListener('click', function(e) {
+          e.preventDefault();
+          skillsFilters.forEach(el => el.classList.remove('filter-active'));
+          this.classList.add('filter-active');
+
+          skillsIsotope.arrange({
+            filter: this.getAttribute('data-filter')
+          });
+          skillsIsotope.on('arrangeComplete', function() {
+            AOS.refresh();
+          });
+        });
+      });
+    }
   });
 
   /**

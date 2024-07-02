@@ -8,7 +8,6 @@ admin.site.site_header = "Login to Cristian"
 admin.site.site_title = "Welcome to Dashboard"
 admin.site.index_title = "Welcome my Portal"
 
-
 urlpatterns = [
     path('', views.home, name='home'),
     path('#contact', views.contact, name='contact'),

@@ -5,9 +5,9 @@ from home import models
 def home(request):
     projects = models.Project.objects.order_by('name')
     categories = models.Category.objects.order_by('name')
-    print("Retrieved projects:", projects)  # Debugging output
-    print("Retrieved categories:", categories)  # Debugging output
-    return render(request, 'home.html', {'projects': projects, 'categories': categories})
+    skill_categories = models.SkillCategory.objects.order_by('name')
+    skills = models.Skill.objects.order_by('-level', )
+    return render(request, 'home.html', {'projects': projects, 'categories': categories, 'skill_categories': skill_categories, 'skills': skills})
 
 def contact(request):
     if request.method == 'POST':
