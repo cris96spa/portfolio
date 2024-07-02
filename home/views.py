@@ -3,10 +3,11 @@ from home import models
 # Create your views here.
 
 def home(request):
-    return render(request, 'home.html')
-
-def project(request):
-    return render(request, 'project.html')
+    projects = models.Project.objects.order_by('name')
+    categories = models.Category.objects.order_by('name')
+    print("Retrieved projects:", projects)  # Debugging output
+    print("Retrieved categories:", categories)  # Debugging output
+    return render(request, 'home.html', {'projects': projects, 'categories': categories})
 
 def contact(request):
     if request.method == 'POST':
