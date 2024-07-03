@@ -13,7 +13,7 @@ SECRET_KEY = 'django-insecure-sc5krpam)xsa00j(+&h2tjm@)nxpuwjq-7gzl=(^d6=3xf+g&+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "www.cris96spa.com", "personal-portfolio.eba-mmpammm8.eu-west-3.elasticbeanstalk.com"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "www.cris96spa.com", "personal-portfolio.eba-mhujnfny.eu-west-3.elasticbeanstalk.com"]
 
 
 # Application definition
