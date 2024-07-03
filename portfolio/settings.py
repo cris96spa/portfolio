@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -8,10 +9,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-sc5krpam)xsa00j(+&h2tjm@)nxpuwjq-7gzl=(^d6=3xf+g&+'
+SECRET_KEY = os.getenv('SECRET_KEY', 'local_secret_key_for_test')  # Use a default for local development
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost", "www.cris96spa.com", "personal-portfolio.eba-mhujnfny.eu-west-3.elasticbeanstalk.com"]
 
@@ -31,6 +32,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -63,11 +65,19 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(default='sqlite:///db.sqlite3')
 }
+
+"""DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv('RDS_DB_NAME'),
+        'USER': os.getenv('RDS_USERNAME'),
+        'PASSWORD': os.getenv('RDS_PASSWORD'),
+        'HOST': os.getenv('RDS_HOSTNAME'),
+        'PORT': os.getenv('RDS_PORT'),
+    }
+}"""
 
 
 # Password validation
