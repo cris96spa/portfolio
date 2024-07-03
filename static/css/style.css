@@ -1260,6 +1260,30 @@ section {
 }
 
 
+
+.description {
+  max-height: 1px; /* Adjust this value as needed */
+  overflow-y: auto;
+  margin-top: 10px; /* Add some spacing above the description */
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Optional: Add some styling for the scrollbar */
+.description::-webkit-scrollbar {
+  width: 6px;
+}
+
+.description::-webkit-scrollbar-thumb {
+  background: #ccc; 
+  border-radius: 3px;
+}
+
+.description::-webkit-scrollbar-thumb:hover {
+  background: #999; 
+}
+
+
 .github-link:hover {
   background-color: var(--primary-color); /* Slightly lighter on hover */
 }
