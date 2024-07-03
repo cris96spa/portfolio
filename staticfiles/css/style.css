@@ -1282,6 +1282,9 @@ section {
   background: #999; 
 }
 
+.rounded-img {
+  border-radius: 100%
+}
 
 .github-link:hover {
   background-color: var(--primary-color); /* Slightly lighter on hover */
@@ -1483,3 +1486,4 @@ section {
 .d-block {
   display: block;
 }
+
