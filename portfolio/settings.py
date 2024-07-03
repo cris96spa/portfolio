@@ -13,7 +13,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'local_secret_key_for_test')  # Use a defau
 
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "www.cris96spa.com", "cris96spa-portfolio-f5defa5f8839.herokuapp.com/"]
+ALLOWED_HOSTS = [".herokuapp.com", ".cris96spa.com", ]
 
 
 # Application definition
