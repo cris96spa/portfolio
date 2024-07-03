@@ -1204,9 +1204,7 @@ section {
 
 .card-container {
   perspective: 1000px; 
-  height: 350px;
   position: relative; /* Positioning context for absolute children */
-  transform-style: preserve-3d;
   display: flex;
   flex-direction: column; /* Stack children vertically */
   justify-content: center; /* Center content vertically */
@@ -1216,7 +1214,7 @@ section {
 
 .card {
   width: 100%; /* Ensures that the card takes the full width of its container */
-  height: 300px; /* Fixed height for all cards */
+  height: 400px; /* Fixed height for all cards */
   display: flex; /* Using Flexbox for alignment */
   flex-direction: column; /* Stack children vertically */
   justify-content: center; /* Center content vertically */
@@ -1238,18 +1236,6 @@ section {
   align-items: center;
 }
 
-.card .back {
-  transform: rotateY(180deg); /* Already existing rotation */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 20px;
-  position: absolute; /* Ensures the back covers the whole card */
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-}
 
 /* Additional rotation to make text appear right-side up */
 .card.flipped .back {
@@ -1426,9 +1412,7 @@ section {
   color: var(--dark-color); /* Darker color when the link is clicked */
 }
 
-.copyright-link{
-  color: var(--dark-color);
-}
+
 .copyright-link:hover {
   text-decoration: underline; /* Underline on hover (optional) */
 }
