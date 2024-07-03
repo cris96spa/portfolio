@@ -1262,11 +1262,10 @@ section {
 
 
 .description {
-  max-height: 1px; /* Adjust this value as needed */
+  max-height: 100px; /* Adjust this value as needed */
   overflow-y: auto;
   margin-top: 10px; /* Add some spacing above the description */
   padding: 5px;
-  border: 1px solid #ccc;
 }
 
 /* Optional: Add some styling for the scrollbar */
@@ -1483,4 +1482,8 @@ section {
 }
 .d-block {
   display: block;
+}
+
+.rounded-img {
+  border-radius: 50%;
 }
