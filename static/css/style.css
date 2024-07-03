@@ -1359,6 +1359,23 @@ section {
   --bs-btn-disabled-border-color: var(--primary-color);
 }
 
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--dark-color);
+  --bs-btn-border-color: var(--dark-color);
+  --bs-btn-hover-color: var(--primary-color);
+  --bs-btn-hover-bg: var(--dark-color);
+  --bs-btn-hover-border-color: var(--dark-color);
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: var(--primary-color);
+  --bs-btn-active-border-color: var(--primary-color);
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  ---bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #var(--primary-color);
+  --bs-btn-disabled-border-color: var(--primary-color);
+}
+
 
 .skills-content {
   max-height: 400px;  /* Maximum height before scrollbar appears */
