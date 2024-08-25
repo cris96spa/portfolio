@@ -1,3 +1,56 @@
+:root{
+  --accent-color:#00a6fb;
+  --primary-color:#007cbd;
+  --light-color:#c0e9fe;
+  --dark-color:#003554;
+  --background:#fff;
+  --alt-background:#f0faff;
+  --error-color:#b00020;
+  --disabled-color:rgba(0,0,0,0.28);
+  --font-family:"Epilogue",sans-serif;
+  --base-font-size:16px;
+  --h1-font-size:36px;
+  --h2-font-size:28px;
+  --h3-font-size:24px;
+  --h4-font-size:14px;
+  --btn-font-size:16px;
+  --logo-font-size:20px;
+  --p-font-size:16px;
+  --p-line-height:22px;
+  --p-spacing:30px;
+  --h1-font-weight:800;
+  --h2-font-weight:400;
+  --h3-font-weight:200;
+  --h4-font-weight:300;
+  --btn-font-weight:700;
+  --logo-font-weight:700;
+  --p-font-weight:300;
+  --app:1000px;
+  --page:800px;
+  --content:650px;
+  --half-page:400px;
+  --half-page-large:480px;
+  --half-page-small:320px;
+  --half-content:325px;
+  --padding:3em;
+  --half-padding:1.5em;
+  --card-padding:2em;
+  --card-radius:1em;
+  --wave-width:110vw;
+  --wave-height:6.6vw;
+  --wave-height:6vw;
+  --wave-height-neg:-6.6vw;
+  --wave-height-neg:-6vw;
+  --wave-displacement:100%;
+  --wave-displacement:calc(100% - 0.3vw);
+  --nav-height:3.5em;
+  --sub-nav-height:2em;
+  --divider-width:120px;
+  --divider-small-width:40px;
+  --line-weight:3px;
+  --line-radius:1.5px
+}
+
 #skills-filters,.portfolio #portfolio-filters{
   margin:0 auto 35px;
   list-style:none;
@@ -279,7 +332,7 @@ h1,h2,h3,h4,h5,h6{
 }
 #hero{
   width:100%;
-  height:100vh;
+  height:50vh;
   background:url(../img/hero-bg.jpg) top;
   background-size:cover
 }
@@ -737,58 +790,7 @@ section{
       padding-right:20px 15px
   }
 }
-:root{
-  --accent-color:#00a6fb;
-  --primary-color:#007cbd;
-  --light-color:#c0e9fe;
-  --dark-color:#003554;
-  --background:#fff;
-  --alt-background:#f0faff;
-  --error-color:#b00020;
-  --disabled-color:rgba(0,0,0,0.28);
-  --font-family:"Epilogue",sans-serif;
-  --base-font-size:16px;
-  --h1-font-size:36px;
-  --h2-font-size:28px;
-  --h3-font-size:24px;
-  --h4-font-size:14px;
-  --btn-font-size:16px;
-  --logo-font-size:20px;
-  --p-font-size:16px;
-  --p-line-height:22px;
-  --p-spacing:30px;
-  --h1-font-weight:800;
-  --h2-font-weight:400;
-  --h3-font-weight:200;
-  --h4-font-weight:300;
-  --btn-font-weight:700;
-  --logo-font-weight:700;
-  --p-font-weight:300;
-  --app:1000px;
-  --page:800px;
-  --content:650px;
-  --half-page:400px;
-  --half-page-large:480px;
-  --half-page-small:320px;
-  --half-content:325px;
-  --padding:3em;
-  --half-padding:1.5em;
-  --card-padding:2em;
-  --card-radius:1em;
-  --wave-width:110vw;
-  --wave-height:6.6vw;
-  --wave-height:6vw;
-  --wave-height-neg:-6.6vw;
-  --wave-height-neg:-6vw;
-  --wave-displacement:100%;
-  --wave-displacement:calc(100% - 0.3vw);
-  --nav-height:3.5em;
-  --sub-nav-height:2em;
-  --divider-width:120px;
-  --divider-small-width:40px;
-  --line-weight:3px;
-  --line-radius:1.5px
-}
+
 .buttons{
   display:grid;
   grid-gap:1em;

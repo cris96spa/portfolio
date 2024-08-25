@@ -13,7 +13,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'local_secret_key_for_test')  # Use a defau
 
 #DEBUG = os.getenv('DEBUG', 'False') == 'True'
 DEBUG = True
-ALLOWED_HOSTS = [".herokuapp.com", ".cris96spa.com", "127.0.0.1"]
+ALLOWED_HOSTS = [".herokuapp.com", ".cris96spa.com", "127.0.0.1", "www.cris96spa.com"]
 
 
 # Application definition
@@ -128,3 +128,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# SSL/TLS settings
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
