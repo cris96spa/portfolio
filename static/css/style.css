@@ -32,7 +32,7 @@
   --half-page-large:480px;
   --half-page-small:320px;
   --half-content:325px;
-  --padding:3em;
+  --padding:1.5em;
   --half-padding:1.5em;
   --card-padding:2em;
   --card-radius:1em;
@@ -96,7 +96,7 @@ section .content{
   margin:0 auto
 }
 section:not(.alt-section)~section:not(.alt-section){
-  margin-top:3em
+  margin-top:1.5em
 }
 .alt-section{
   position:relative;
@@ -147,20 +147,9 @@ a.card,a .card{
   text-decoration:none
 }
 
-.item{
-  border-radius:10px
-}
-.item .image{
-  max-width:100%;
-  height:auto;
-  margin:0 auto 10px
-}
 .item .icon{
   font-size:55px;
   margin:0
-}
-.item .text{
-  text-align:left
 }
 
 .centered-text{
@@ -261,7 +250,8 @@ h1,h2,h3,h4,h5,h6{
   text-decoration:none
 }
 #main{
-  margin-left:300px
+  margin-left:300px;
+  overflow:hidden
 }
 @media (max-width:1199px){
   #header{
@@ -330,11 +320,16 @@ h1,h2,h3,h4,h5,h6{
 .mobile-nav-active #header{
   left:0
 }
-#hero{
-  width:100%;
-  height:50vh;
-  background:url(../img/hero-bg.jpg) top;
-  background-size:cover
+
+/* Hero section*/
+#hero {
+  width: 100%;
+  height: 65vh;
+  position: relative;
+  background: url(../img/hero-bg.jpg) center center;
+  background-size: cover;
+  background-attachment: fixed;
+  overflow: hidden;
 }
 #hero:before{
   content:"";
@@ -386,8 +381,9 @@ h1,h2,h3,h4,h5,h6{
       margin-bottom:30px
   }
 }
+
 section{
-  padding:60px 0;
+  padding:20px 0;
   overflow:hidden
 }
 .section-bg{
@@ -396,6 +392,7 @@ section{
 .section-title{
   padding-bottom:30px
 }
+
 .section-title h2{
   font-size:32px;
   font-weight:700;
@@ -416,6 +413,9 @@ section{
 }
 .section-title p{
   margin-bottom:0
+}
+.section-title.no-title{
+  padding-bottom:0px
 }
 .about .content h3{
   font-weight:700;
@@ -541,7 +541,8 @@ section{
   padding:5px 15px;
   display:inline-block;
   font-weight:600;
-  margin-bottom:10px
+  margin-bottom:10px;
+  border-radius:4px;
 }
 .resume .resume-item ul{
   padding-left:20px
@@ -837,29 +838,12 @@ section{
   transition:transform .8s;
   transform-style:preserve-3d
 }
-.card .back,.card .front{
-  position:absolute;
-  width:100%;
-  height:100%;
-  backface-visibility:hidden;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center
-}
-.card.flipped .back{
-  transform:rotateY(0deg)
-}
-.card .back,.card .front{
-  transition:opacity .6s ease-in-out
-}
+
 .card .top-text{
   margin-top:0;
   padding:5px 10px
 }
-.description,.github-link{
-  margin-top:10px
-}
+
 .description{
   max-height:100px;
   overflow-y:auto;
@@ -878,9 +862,7 @@ section{
 .rounded-img{
   border-radius:100%
 }
-.github-link:hover{
-  background-color:var(--primary-color)
-}
+
 .item .tag,.item .title{
   font-size:1em;
   white-space:nowrap;
@@ -928,7 +910,7 @@ section{
   padding-right:15px
 }
 .portfolio-container{
-  max-height:800px;
+  max-height:1300px;
   overflow-y:auto;
   display:flex;
   flex-wrap:wrap;
@@ -990,6 +972,7 @@ section{
 /* Card CSS*/
 .item {
   display: flex;
+  position: relative;
   flex-direction: column;
   text-align: center;
   border-radius: var(--card-radius);
@@ -1017,7 +1000,7 @@ section{
   text-transform: uppercase;
   text-align: center;
   margin: 0.75em 0 0;
-  color: var(--primary-color);
+  color: var(--dark-color);
   font-weight: bold;
 }
 
@@ -1035,6 +1018,7 @@ section{
 
 .item .image-container {
   width: 100%;
+  height: auto;
   aspect-ratio: 16 / 9;
   overflow: hidden;
 }
@@ -1064,5 +1048,67 @@ section{
 
 .btn-secondary {
   margin: 15px auto;
-  display: block;
+}
+
+.company-title {
+  color: inherit; /* This makes the link color match the surrounding text */
+  text-decoration: none; /* This removes the underline */
+  font-weight: inherit; /* This ensures the font weight matches the surrounding text */
+  cursor: pointer; /* This changes the cursor to a hand icon on hover */
+  transition: opacity 0.3s ease; /* This adds a smooth transition effect for the opacity change */
+}
+
+.company-title:hover {
+  color: var(--primary-color); /* This changes the text color to the primary color on hover */
+}
+
+.content {
+    flex-grow: 1;  /* Allow content to grow and push footer to bottom */
+    /* ... other existing styles ... */
+}
+
+.card-footer {
+  border-top: .8px dashed var(--dark-color) ;  /* Horizontal line separator */
+  padding: 15px;
+  margin-top: auto;  /* Push footer to bottom */
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex: 1;  /* Allow skills to take up available space */
+  margin-right: 10px;  /* Add some space between skills and GitHub button */
+}
+
+.skill-tag {
+  background:#e4edf9;
+  display:inline-block;
+  font-weight:600;
+  color: #333;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8em;
+  white-space: nowrap;
+}
+
+.github-link {
+  width: 37px; 
+  height: 37px;
+  border-radius: 50%;
+  background-color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+  flex-shrink: 0;
+}
+
+.github-link svg {
+  width: 25px;  /* Adjust icon size */
+  height: 25px;
+  fill: #fff;
 }

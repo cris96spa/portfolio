@@ -5,7 +5,6 @@
     <head>
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
         <title>It's me, Cristian</title>
         <meta content="" name="description">
         <meta content="" name="keywords">
@@ -39,7 +38,6 @@
         <!-- ======= Header ======= -->
         <header id="header">
             <div class="d-flex flex-column">
-
                 <div class="profile">
                     <img src="{% static 'img/profile-img.jpg' %}" alt="" class="img-fluid rounded-circle">
                     <h1 class="text-light"><a href="index.html">Cristian C. Spagnuolo</a></h1>
@@ -56,9 +54,10 @@
                     <ul>
                         <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
                         <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
-                        <li><a href="#skills" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Skills</span></a></li>
-                        <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
                         <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Projects</span></a></li>
+                        <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+                        <li><a href="#skills" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Skills</span></a></li>
+                        <!--<li><a href="#certifications" class="nav-link scrollto"><i class="bx bx-certification"></i> <span>Certifications</span></a></li>-->
                     </ul>
                 </nav><!-- .nav-menu -->
             </div>
@@ -76,12 +75,10 @@
         </section><!-- End Hero -->
 
         <main id="main">
-
         <!-- ======= About Section ======= -->
         <section id="about" class="about">
             <div class="container">
-
-                <div class="section-title">
+                <div class="section-title no-title">
                     <h2>About</h2>
                 </div>
 
@@ -105,33 +102,138 @@
                             </div>
                             <div class="col-lg-6">
                                 <ul>
-                                    <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Master in Computer Science</span></li>
+                                    <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>MSc in Computer Science</span></li>
                                     <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>Milan, Italy</span></li>
                                     <li><i class="bi bi-chevron-right"></i> <strong>GitHub:</strong><a href="https://github.com/cris96spa" target="_blank" class="custom-link">cris96spa</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div>
-                            <p>
-                                It's me, Cristian 👋,
-                                as an AI Engineer with a strong foundation in Computer Science and Engineering (MSc from Politecnico di Milano, BSc from Università degli Studi del Sannio, both with top honors), 
-                                I specialize in developing and deploying cutting-edge machine learning models, including computer vision and Reinforcement Learning.
-                                
-                                When I'm not immersed in machine learning projects, you'll likely find me working out "mens sana in corpore sano" 🏋️‍♂️.
-                            </p>
-                            <a href="#portfolio" class="btn btn-primary">View Projects</a>
+                            <p>It's me, Cristian,</p>
+                            <p>as an AI Engineer with a strong foundation in Computer Science and Engineering, I specialize in developing and deploying cutting-edge machine learning models, including computer vision, Reinforcement Learning and LLMs. </p>
+                            <p>When I'm not training ML models, you'll likely find me training myself "mens sana in corpore sano".</p>
                         </div>
                     </div>
                 </div>
-
             </div>
         </section><!-- End About Section -->
 
+        <!-- Projects Section -->
+        <section id="portfolio" class="portfolio section-bg">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Projects</h2>
+                    <p>Here you can find my personal portfolio. Each project shows my ability to leverage advanced technologies and 
+                        innovative approaches, ranging from machine learning to computer security.</p>
+                </div>
+    
+                <!-- Filter Buttons -->
+                <div class="row" data-aos="fade-up">
+                    <div class="col-lg-12 d-flex justify-content-center">
+                        <ul id="portfolio-filters">
+                            <li data-filter="*" class="filter-active">All</li>
+                            {% for category in categories %}
+                                <li data-filter=".filter-{{ category.tag }}">{{ category.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+    
+                <!-- Projects -->
+                <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
+                    {% for project in projects %}
+                        <div class="col-lg-4 col-md-6 portfolio-item filter-{{ project.category.tag }}">
+                            <div class="item {% if project.is_reference %}highlighted{% endif %}">
+                                <div class="image-container">
+                                    <img src="{% static 'img/categories/' %}{{ project.img }}" alt="{{ project.name }}">
+                                </div>
+                                <div class="content">
+                                    {% if project.category.tag %}
+                                        <span class="tag h4">{{ project.name }}</span>
+                                    {% endif %}
+                                    <div class="text">
+                                        <p class="description">{{ project.description }}</p>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="skills">
+                                        <span class="skill-tag">Peppo</span>
+                                        <span class="skill-tag">Ciccio</span>
+                                    </div>
+                                    <a href="{{ project.github_link }}" class="github-link" target="_blank" title="Show on GitHub">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <!-- End Project Section -->
+
+        <!-- ======= Resume Section ======= -->
+        <section id="resume" class="resume">
+            <div class="container">
+                <div class="section-title no-title">
+                    <h2>Resume</h2>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6" data-aos="fade-up">
+                        {% comment%}
+                        <h3 class="resume-title">Summary</h3>
+                        <div class="resume-item pb-0">
+                            <h4>Cristian C. Spagnuolo</h4>
+                            <p><em></em></p>
+                            <ul>
+                                <li>Milan, Italy</li>
+                                <li><a href="tel:+393395869455" class="custom-link">+39 3395869455</a></li>
+                                <li><a href="mailto:cristian.c.spagnuolo@gmail.com" class="custom-link">cristian.c.spagnuolo@gmail.com</a></li>
+                                <li>LinkedIn: <a href="https://www.linkedin.com/in/cristian-c-spagnuolo/" class="custom-link" target="_blank">cristian-c-spagnuolo</a></li>
+                                <li>GitHub: <a href="https://github.com/cris96spa" target="_blank" class="custom-link">cris96spa</a></li>
+                            </ul>
+                        </div>
+                        {% endcomment%}
+                        <h3 class="resume-title">Professional Experience</h3>
+                        <div class="resume-item">
+                            <h4>ML Engineer @ <a href="https://www.mlcube.com/" class="company-title">MLCube</a></h4></h4>
+                            <h5>Sep 2024 - Now</h5>
+                            <p>Design, evaluate, and deploy machine learning models including CV, RL and LLM solutions.</p>
+                            <p>Monitor the performance, assess the quality and re-train deployed models.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="resume-title">Education</h3>
+                    <div class="resume-item">
+                        <h4>MSc in Computer Science</h4>
+                        <h5>Mar 2020 - Jul 2024</h5>
+                        <p><em>110/110 cum laude, Politecnico di Milano, Milan, Italy </em></p>
+                        <p>Thesis: Curriculum Reinforcement Learning through Teleportation: The Teleport MDP</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>BSc in Computer Science</h4>
+                        <h5>Sep 2015 - Oct 2019</h5>
+                        <p><em>Università degli Studi del Sannio, Benevento, Italy</em></p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Resume Section -->
+        <div class="text-center ">
+            <div class="row">
+                <div data-aos="fade-up">
+                <a class="btn btn-primary download-button text-center" href="{% static 'resume/Cristian_Spagnuolo_Resume.pdf' %}" download>
+                    <i class="fas fa-download"></i> Download Resume
+                </a>
+                </div>
+            </div>
+        </div>
 
         <!-- Skills Section -->
         <section id="skills" class="skills section-bg">
             <div class="container">
-
                 <div class="section-title">
                     <h2>Skills</h2>
                     <p>
@@ -155,14 +257,14 @@
                 <!-- Skills Content -->
                 <div class="row skills-content" data-aos="fade-up" data-aos-delay="100">
                     {% for skill in skills %}
-                    <div class="col-lg-6 portfolio-item filter-{{ skill.category.tag }}">
-                        <div class="progress">
-                            <span class="skill">{{ skill.name }} <i class="val">{{ skill.level }}%</i></span>
-                            <div class="progress-bar-wrap">
-                            <div class="progress-bar" role="progressbar" style="width: {{ skill.level }}%" aria-valuenow="{{ skill.level }}" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="col-lg-6 portfolio-item filter-{{ skill.category.tag }}">
+                            <div class="progress">
+                                <span class="skill">{{ skill.name }} <i class="val">{{ skill.level }}%</i></span>
+                                <div class="progress-bar-wrap">
+                                    <div class="progress-bar" role="progressbar" style="width: {{ skill.level }}%" aria-valuenow="{{ skill.level }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     {% endfor %}
                 </div>
 
@@ -170,128 +272,6 @@
         </section>
         <!-- End Skills Section -->
 
-        <!-- ======= Resume Section ======= -->
-        <section id="resume" class="resume">
-            <div class="container">
-
-                <div class="section-title">
-                    <h2>Resume</h2>
-                    <p></p>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6" data-aos="fade-up">
-                        {% comment%}
-                        <h3 class="resume-title">Summary</h3>
-                        <div class="resume-item pb-0">
-                            <h4>Cristian C. Spagnuolo</h4>
-                            <p><em></em></p>
-                            <ul>
-                                <li>Milan, Italy</li>
-                                <li><a href="tel:+393395869455" class="custom-link">+39 3395869455</a></li>
-                                <li><a href="mailto:cristian.c.spagnuolo@gmail.com" class="custom-link">cristian.c.spagnuolo@gmail.com</a></li>
-                                <li>LinkedIn: <a href="https://www.linkedin.com/in/cristian-c-spagnuolo/" class="custom-link" target="_blank">cristian-c-spagnuolo</a></li>
-                                <li>GitHub: <a href="https://github.com/cris96spa" target="_blank" class="custom-link">cris96spa</a></li>
-                            </ul>
-                        </div>
-                        {% endcomment%}
-                        <h3 class="resume-title">Professional Experience</h3>
-                            <div class="resume-item">
-                                <h4>ML Engineer @ MLCube</h4>
-                                <h5>Sep 2024 - Now</h5>
-                                <p>Design, evaluate, and deploy machine learning models including computer vision (CV) large language models (LLMs) solutions.</p>
-                                <p>Monitor the performance, assess the quality and re-train deployed models.</p>
-                            </div>
-                    <div class="resume-item">
-                        <h4>Bachelor of Technology</h4>
-                        <h5>2010 - 2014</h5>
-                        <p><em>PRIST Deemed to be University</em></p>
-                        <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius
-                        unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart
-                        dila</p>
-                    </div>
-                    </div>
-
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                    <h3 class="resume-title">Education</h3>
-                    <div class="resume-item">
-                        <h4>Master Degree in Computer Science</h4>
-                        <h5>Mar 2020 - Jul 2024</h5>
-                        <p><em>110/110 cum laude, Politecnico di Milano, Italy </em></p>
-                        <ul>
-                        <li>110/110 cum laude</li>
-                    
-                        </ul>
-                    </div>
-                    <div class="resume-item">
-                        <h4>Bachelor Degree in Computer Science</h4>
-                        <h5>Sep 2015 - Oct 2019</h5>
-                        <p><em>Università degli Studi del Sannio, Benevento, Italy</em></p>
-                        <ul>
-                        <li>110/110 cum laude</li>
-                        </ul>
-                    </div>
-                    </div>
-                </div>
-                <div class="text-center ">
-                    <div class="row">
-                        <div data-aos="fade-up">
-                        <a class="btn btn-primary download-button text-center" href="{% static 'resume/Cristian_Spagnuolo_Resume.pdf' %}" download>
-                            <i class="fas fa-download"></i> Download Resume
-                        </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section><!-- End Resume Section -->
-
-
-        <!-- Projects Section -->
-        <section id="portfolio" class="portfolio section-bg">
-        <div class="container">
-            <div class="section-title">
-            <h2>Projects</h2>
-            <p>Here you can find my personal portfolio. Each project shows my ability to leverage advanced technologies and 
-                innovative approaches, ranging from machine learning to computer security.</p>
-            </div>
-
-            <!-- Filter Buttons -->
-            <div class="row" data-aos="fade-up">
-            <div class="col-lg-12 d-flex justify-content-center">
-                <ul id="portfolio-filters">
-                <li data-filter="*" class="filter-active">All</li>
-                {% for category in categories %}
-                    <li data-filter=".filter-{{ category.tag }}">{{ category.name }}</li>
-                {% endfor %}
-                </ul>
-            </div>
-            </div>
-
-            <!-- Projects -->
-            <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
-            {% for project in projects %}
-            <div class="col-lg-4 col-md-6 portfolio-item filter-{{ project.category.tag }}">
-            <div class="item {% if project.is_reference %}highlighted{% endif %}">
-                <div class="image-container">
-                <img src="{% static 'img/categories/' %}{{ project.img }}" alt="{{ project.name }}">
-                </div>
-                <div class="content">
-                {% if project.category.tag %}
-                <span class="tag h4">{{ project.category.name }}</span>
-                {% endif %}
-                <h3 class="title">{{ project.name }}</h3>
-                <div class="text">
-                    <p class="description">{{ project.description }}</p>
-                </div>
-                <a href="{{ project.github_link }}" class="btn btn-secondary github-link" target="_blank">View on GitHub</a>
-                </div>
-            </div>
-            </div>
-            {% endfor %}
-            </div>
-        </div>
-        </section>
-        <!-- End Project Section -->
         </main><!-- End #main -->
 
         <!-- ======= Footer ======= -->
