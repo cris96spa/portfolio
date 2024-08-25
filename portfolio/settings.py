@@ -11,9 +11,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', 'local_secret_key_for_test')  # Use a default for local development
 
 
-#DEBUG = os.getenv('DEBUG', 'False') == 'True'
-DEBUG = True
-ALLOWED_HOSTS = [".herokuapp.com", ".cris96spa.com", "127.0.0.1"]
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
+
+ALLOWED_HOSTS = [".herokuapp.com", ".cris96spa.com", "127.0.0.1", "www.cris96spa.com"]
 
 
 # Application definition

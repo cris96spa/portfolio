@@ -6,6 +6,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 class Category(models.Model):
     name = models.CharField(max_length=100)
     tag = models.CharField(max_length=100)
+    rank = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(10)])
     def __str__(self):
         return self.name
 
@@ -14,12 +15,12 @@ class Project(models.Model):
     name = models.CharField(max_length=200)
     short_description = models.CharField(max_length=300)
     description = models.TextField()
-    technologies_used = models.CharField(max_length=500)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     github_link = models.URLField(blank=True, null=True)
     demo_link = models.URLField(blank=True, null=True)
     img = models.CharField(max_length=200)
-
+    skills = models.ManyToManyField('Skill')
+    rank = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(10)])
     def __str__(self):
         return self.name
     
@@ -36,6 +37,7 @@ class Contact(models.Model):
 class SkillCategory(models.Model):
     name = models.CharField(max_length=100)
     tag = models.CharField(max_length=100)
+    rank = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(10)])
     def __str__(self):
         return self.name
 

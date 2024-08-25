@@ -6,6 +6,7 @@
   --background:#fff;
   --alt-background:#f0faff;
   --error-color:#b00020;
+  --tag-color: #e4edf9;
   --disabled-color:rgba(0,0,0,0.28);
   --font-family:"Epilogue",sans-serif;
   --base-font-size:16px;
@@ -63,7 +64,7 @@
   cursor:pointer;
   display:inline-block;
   padding:10px 15px 8px;
-  font-size:14px;
+  font-size:15px;
   font-weight:600;
   line-height:1;
   text-transform:uppercase;
@@ -135,13 +136,7 @@ section:not(.alt-section)~section:not(.alt-section){
 .card .icon{
   color:var(--primary-color)
 }
-.card.interactive{
-  cursor:pointer;
-  transition:box-shadow .35s ease-in-out
-}
-.card.interactive:focus,.card.interactive:hover{
-  box-shadow:0 19px 38px rgba(0,0,0,.3),0 15px 12px rgba(0,0,0,.22)
-}
+
 a.card,a .card{
   color:initial;
   text-decoration:none
@@ -505,13 +500,15 @@ section{
 }
 .skills .progress-bar-wrap{
   background:#dce8f8;
-  height:10px
+  height:10px;
+  border-radius:5px;
 }
 .skills .progress-bar{
   width:1px;
   height:10px;
   transition:.9s;
-  background-color:#149ddd
+  background-color: var(--primary-color);
+  border-radius: 5px;
 }
 .resume .resume-title{
   font-size:26px;
@@ -537,7 +534,7 @@ section{
 }
 .resume .resume-item h5{
   font-size:16px;
-  background:#e4edf9;
+  background:var(--tag-color);
   padding:5px 15px;
   display:inline-block;
   font-weight:600;
@@ -579,7 +576,7 @@ section{
   cursor:pointer;
   display:inline-block;
   padding:10px 15px 8px;
-  font-size:14px;
+  font-size:15px;
   font-weight:600;
   line-height:1;
   text-transform:uppercase;
@@ -844,29 +841,13 @@ section{
   padding:5px 10px
 }
 
-.description{
-  max-height:100px;
-  overflow-y:auto;
-  padding:5px
-}
-.description::-webkit-scrollbar{
-  width:6px
-}
-.description::-webkit-scrollbar-thumb{
-  background:#ccc;
-  border-radius:3px
-}
-.description::-webkit-scrollbar-thumb:hover{
-  background:#999
-}
 .rounded-img{
   border-radius:100%
 }
 
-.item .tag,.item .title{
+.item .tag, .item .title{
   font-size:1em;
   white-space:nowrap;
-  overflow:hidden;
   text-overflow:ellipsis;
   padding:0 10px
 }
@@ -904,11 +885,8 @@ section{
   --bs-btn-disabled-bg:#var(--primary-color);
   --bs-btn-disabled-border-color:var(--primary-color)
 }
-.skills-content{
-  max-height:400px;
-  overflow-y:auto;
-  padding-right:15px
-}
+
+
 .portfolio-container{
   max-height:1300px;
   overflow-y:auto;
@@ -994,14 +972,14 @@ section{
   border: 2px solid var(--primary-color);
 }
 
-
 .item .tag {
   display: block;
   text-transform: uppercase;
   text-align: center;
-  margin: 0.75em 0 0;
+  padding: 15px 10px 0 10px;
   color: var(--dark-color);
   font-weight: bold;
+  font-size: 1.2em;
 }
 
 .item .title {
@@ -1012,20 +990,26 @@ section{
 
 .item .text {
   flex-grow: 1;
-  padding: 0 15px 15px;
+  padding: 15px 15px 15px;
   text-align: center;
+  min-height: 0;
 }
 
-.item .image-container {
+.image-container {
+  /*image size: 300x180*/
   width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
+  padding-top: 60%; /* 16:9 aspect ratio */
+  position: relative;
   overflow: hidden;
 }
 
-.item .image-container img {
+.image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
   object-fit: cover;
   object-position: center;
   transition: transform 0.3s ease-in-out;
@@ -1038,12 +1022,13 @@ section{
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .item .image-container {
-    aspect-ratio: 4 / 3; /* Slightly different aspect ratio for smaller screens */
+    aspect-ratio: 16/9; /* Slightly different aspect ratio for smaller screens */
   }
 }
 
 .item .content {
-  padding: 20px;
+  padding: 10px;
+  overflow-y: auto;
 }
 
 .btn-secondary {
@@ -1055,7 +1040,7 @@ section{
   text-decoration: none; /* This removes the underline */
   font-weight: inherit; /* This ensures the font weight matches the surrounding text */
   cursor: pointer; /* This changes the cursor to a hand icon on hover */
-  transition: opacity 0.3s ease; /* This adds a smooth transition effect for the opacity change */
+  transition: opacity 0.3s ease; 
 }
 
 .company-title:hover {
@@ -1063,8 +1048,9 @@ section{
 }
 
 .content {
-    flex-grow: 1;  /* Allow content to grow and push footer to bottom */
-    /* ... other existing styles ... */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Allow content to grow and fill available space */
 }
 
 .card-footer {
@@ -1080,21 +1066,20 @@ section{
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  flex: 1;  /* Allow skills to take up available space */
-  margin-right: 10px;  /* Add some space between skills and GitHub button */
+  flex: 1; 
+  margin-right: 10px;  
 }
 
 .skill-tag {
-  background:#e4edf9;
+  background:var(--tag-color);
   display:inline-block;
   font-weight:600;
+  font-size: 16px;
   color: #333;
   padding: 4px 8px;
   border-radius: 4px;
-  font-size: 0.8em;
   white-space: nowrap;
 }
-
 .github-link {
   width: 37px; 
   height: 37px;
@@ -1103,12 +1088,162 @@ section{
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
   flex-shrink: 0;
 }
 
 .github-link svg {
-  width: 25px;  /* Adjust icon size */
+  width: 25px;
   height: 25px;
   fill: #fff;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.github-link:hover {
+  transform: scale(1.1); 
+  box-shadow: 0 0 10px;
+}
+
+.github-link:hover svg {
+  fill: #fff; 
+}
+
+.github-link:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px;
+}
+
+.text {
+  flex-grow: 1; /* Allow text to grow and push the footer to the bottom */
+  display: flex;
+  flex-direction: column;
+}
+
+.description {
+  flex-grow: 1; /* Allow description to take up remaining space */
+  overflow-y: auto; /* Add scrollbar if content overflows */
+  padding: 10px;
+  margin-bottom: 10px; /* Add some space before the footer */
+  font-size: 1em;
+}
+
+.description::-webkit-scrollbar{
+  width:6px
+}
+.description::-webkit-scrollbar-thumb{
+  background:#ccc;
+  border-radius:3px
+}
+.description::-webkit-scrollbar-thumb:hover{
+  background:#999
+}
+.skills-content {
+  max-height: 800px; /* Increased height */
+  overflow-y: auto;
+  padding-right: 15px;
+}
+
+/* Ensure the row structure is maintained */
+.skills-content.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+/* Style for each skill item */
+.skills-content .col-lg-6 {
+  width: 49%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-bottom: 20px;
+}
+
+/* Progress bar styles */
+.skills-content .progress {
+  height: auto;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border-radius: 0.25rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.skills-content .progress-bar-wrap {
+  background-color: #e9ecef;
+  height: 10px;
+  border-radius: 0.25rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.skills-content .progress-bar {
+  height: 10px;
+  border-radius: 0.25rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.skills-content .skill {
+  padding: 10px 0;
+  margin: 0 0 6px 0;
+  text-transform: uppercase;
+  display: block;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  color: #050d18;
+  transition: all 0.3s ease-in-out;
+}
+
+.skills-content .skill .val {
+  float: right;
+  font-style: normal;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover effect */
+.progress:hover {
+  transform: scale(1.01); 
+  box-shadow: 0 0 10px;
+}
+
+.progress:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px;
+}
+
+
+/* Scrollbar styling */
+.skills-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.skills-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.skills-content::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.skills-content::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .skills-content .col-lg-6 {
+    width: 100%;
+  }
+  
+  .skills-content {
+    max-height: 600px;
+  }
+}
+
+/* Ensure AOS animations don't interfere with layout */
+[data-aos] {
+  pointer-events: none;
+}
+[data-aos].aos-animate {
+  pointer-events: auto;
 }
