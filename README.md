@@ -42,15 +42,15 @@ If you have any feedback, please reach out to us at cristian.c.spagnuolo@gmail.c
 
 Clone the project
 
-```bash
+bash
   git clone https://github.com/cris96spa/portfolio.git
-```
+
 
 Go to the project directory
 
-```bash
+bash
   cd portfolio
-```
+
 
 MAKE  Migration
 

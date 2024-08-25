@@ -33,7 +33,6 @@
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
   <!-- Template Main CSS File -->
-  <link href="{% static 'css/normalize.css' %}" rel="stylesheet">
   <link href="{% static 'css/style.css' %}" rel="stylesheet">
   
 
@@ -68,7 +67,6 @@
           <li><a href="#skills" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Skills</span></a></li>
           <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
           <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Projects</span></a></li>
-          <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
         </ul>
       </nav><!-- .nav-menu -->
     </div>
@@ -83,9 +81,6 @@
     </div>
 
   </section><!-- End Hero -->
-
-
-
 
   <main id="main">
 
@@ -288,121 +283,29 @@
   
 	  <!-- Projects -->
 	  <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
-		{% for project in projects %}
-		  <div class="col-lg-4 col-md-6 portfolio-item filter-{{ project.category.tag }}">
-			<div class="card-container">
-			  <div class="card item {% if project.is_reference %}highlighted{% endif %}" data-flipped="false">
-				<div class="front">
-				  <div class="spacer">
-					<img src="{% static 'img/categories/' %}{{ project.img }}" alt="{{ project.name }}" class="image">
-				  </div>
-				  <div class="text">
-					{% if project.category.tag %}
-					  <span class="h4 tag">{{ project.category.name }}</span>
-					{% endif %}
-					<h3 class="title">{{ project.name }}</h3>
-          <div class="description">
-              {{ project.description }}
+      {% for project in projects %}
+      <div class="col-lg-4 col-md-6 portfolio-item filter-{{ project.category.tag }}">
+        <div class="item {% if project.is_reference %}highlighted{% endif %}">
+          <div class="image-container">
+            <img src="{% static 'img/categories/' %}{{ project.img }}" alt="{{ project.name }}">
           </div>
-				  </div>
-				  <a href="{{ project.github_link }}" class="btn btn-secondary github-link" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
-				</div>
-			  </div>
-			</div>
-		  </div>
-		{% endfor %}
+          <div class="content">
+            {% if project.category.tag %}
+            <span class="tag h4">{{ project.category.name }}</span>
+            {% endif %}
+            <h3 class="title">{{ project.name }}</h3>
+            <div class="text">
+              <p class="description">{{ project.description }}</p>
+            </div>
+            <a href="{{ project.github_link }}" class="btn btn-secondary github-link" target="_blank">View on GitHub</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
 	  </div>
 	</div>
   </section>
   <!-- End Project Section -->
-
-
-          <!-- ======= Contact Section ======= -->
-          <section id="contact" class="contact">
-            <div class="container">
-
-              <div class="section-title">
-                <h2>Contact</h2>
-                <p>Thank you for visiting and spending your valuable time with us. I hope you found what you were looking for.
-
-                  I am always open to work on challenging operations and put my skills to use. If you are in need of someone with my skills and experience, please don't hesitate to contact me. I am confident that I can contribute value to your team and help achieve your business goals.
-                  
-                  I am  look forward to hearing from you soon.</p>
-              </div>
-
-              <div class="row" data-aos="fade-in">
-
-                <div class="col-lg-5 d-flex align-items-stretch">
-                  <div class="info">
-                    <div class="address">
-                      <i class="bi bi-geo-alt"></i>
-                      <h4>Location:</h4>
-                      <p>Milan, Italy</p>
-                    </div>
-
-                    <div class="email">
-                      <i class="bi bi-envelope"></i>
-                      <h4>Email:</h4>
-                      <a href="mailto:cristian.c.spagnuolo@gmail.com" class="custom-link-contact">cristian.c.spagnuolo@gmail.com</a>
-                    </div>
-
-                    <div class="phone">
-                      <i class="bi bi-phone"></i>
-                      <h4>Call:</h4>
-                      <a href="tel:+393395869455" class="custom-link-contact">+39 3395869455</a>
-                    </div>
-
-                    <div class="linkedin">
-                      <i class="bi bi-linkedin"></i>
-                      <h4>LinkedIn:</h4>
-                      <a href="https://www.linkedin.com/in/cristian-c-spagnuolo/" class="custom-link-contact" target="_blank">cristian-c-spagnuolo</a>
-                    </div>
-					
-					<div class="github">
-						<i class="bi bi-github"></i>
-						<h4>GitHub:</h4>
-						<a href="https://github.com/cris96spa" class="custom-link-contact" target="_blank">cris96spa</a>
-					  </div>
-                  </div>
-
-                </div>
-
-
-			<div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-				<form action="/#contact" method="post" class="php-email-form">
-					{% csrf_token %}
-					<div class="row">
-					<div class="form-group col-md-6">
-						<label for="name">Your Name</label>
-						<input type="text" name="name" class="form-control" id="name" required>
-					</div>
-					<div class="form-group col-md-6">
-						<label for="email">Your Email</label>
-						<input type="email" class="form-control" name="email" id="email" required>
-					</div>
-					</div>
-					<div class="form-group">
-					<label for="subject">Subject</label>
-					<input type="text" class="form-control" name="subject" id="subject" required>
-					</div>
-					<div class="form-group">
-					<label for="message">Message</label>
-					<textarea class="form-control" name="message" id="message" required></textarea>
-					</div>
-					<div class="my-3">
-					<div class="loading">Loading...</div>
-					<div class="error-message"></div>
-					<div class="sent-message">Your message has been sent. Thank you!</div>
-					</div>
-					<div class="text-center"><button type="submit" class="btn btn-primary">Submit</button></div>
-				</form>
-				</div>
-
-              </div>
-
-            </div>
-          </section><!-- End Contact Section -->
-
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -418,34 +321,13 @@
       class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="{% static 'vendor/purecounter/purecounter_vanilla.js' %}"></script>
   <script src="{% static 'vendor/aos/aos.js' %}"></script>
-  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
   <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
   <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
   <script src="{% static 'vendor/typed.js/typed.min.js' %}"></script>
   <script src="{% static 'vendor/waypoints/noframework.waypoints.js' %}"></script>
-  <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.show-more').forEach(button => {
-        button.addEventListener('click', function() {
-            const card = button.closest('.card');
-            console.log("Before toggle:", card.classList); // Debugging line
-            card.classList.toggle('flipped');
-            console.log("After toggle:", card.classList); // Debugging line
-        });
-    });
 
-    document.querySelectorAll('.show-less').forEach(button => {
-        button.addEventListener('click', function() {
-            const card = button.closest('.card');
-            card.classList.toggle('flipped');
-        });
-    });
-});
-    </script>
 
   <!-- Template Main JS File -->
   <script src="{% static '/js/main.js' %}"></script>
@@ -457,10 +339,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
     crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
-    integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
-    crossorigin="anonymous"></script>
-
 </body>
 
 </html>
