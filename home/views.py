@@ -4,8 +4,8 @@ from home import models
 
 def home(request):
     projects = models.Project.objects.order_by('rank', 'name')
-    categories = models.Category.objects.order_by('name')
-    skill_categories = models.SkillCategory.objects.order_by('name')
+    categories = models.Category.objects.order_by('rank', 'name')
+    skill_categories = models.SkillCategory.objects.order_by('rank', 'name')
     skills = models.Skill.objects.order_by('-level', )
     return render(request, 'home.html', {'projects': projects, 'categories': categories, 'skill_categories': skill_categories, 'skills': skills})
 

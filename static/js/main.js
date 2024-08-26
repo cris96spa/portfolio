@@ -180,6 +180,7 @@
         });
       }, true);
     }
+
     // Initialize Skills Isotope
     let skillsContainer = document.querySelector('.skills-content');
     if (skillsContainer) {
@@ -188,6 +189,16 @@
       });
 
       let skillsFilters = document.querySelectorAll('#skills-filters li');
+
+      // Set the first filter as active by default
+      if (skillsFilters.length > 0) {
+        skillsFilters[0].classList.add('filter-active');
+
+        // Apply the filter for the first category
+        skillsIsotope.arrange({
+          filter: skillsFilters[0].getAttribute('data-filter')
+        });
+      }
 
       skillsFilters.forEach(filter => {
         filter.addEventListener('click', function(e) {
