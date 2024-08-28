@@ -20,7 +20,7 @@ class Project(models.Model):
     demo_link = models.URLField(blank=True, null=True)
     img = models.CharField(max_length=200)
     skills = models.ManyToManyField('Skill')
-    rank = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(10)])
+    rank = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)])
     def __str__(self):
         return self.name
     
@@ -37,7 +37,7 @@ class Contact(models.Model):
 class SkillCategory(models.Model):
     name = models.CharField(max_length=100)
     tag = models.CharField(max_length=100)
-    rank = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(10)])
+    rank = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)])
     def __str__(self):
         return self.name
 

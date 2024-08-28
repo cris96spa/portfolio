@@ -94,7 +94,6 @@ section:focus{
 }
 section .content{
   max-width:var(--page);
-  margin:0 auto
 }
 section:not(.alt-section)~section:not(.alt-section){
   margin-top:1.5em
@@ -1027,7 +1026,6 @@ section{
 }
 
 .item .content {
-  padding: 10px;
   overflow-y: auto;
 }
 
@@ -1154,11 +1152,12 @@ section{
 
 /* Style for each skill item */
 .skills-content .col-lg-6 {
-  width: 49%;
+  width:100%; /* Full width */
   padding-right: 15px;
   padding-left: 15px;
   margin-bottom: 20px;
 }
+
 
 /* Progress bar styles */
 .skills-content .progress {
@@ -1236,7 +1235,7 @@ section{
   }
   
   .skills-content {
-    max-height: 600px;
+    max-height: 400px;
   }
 }
 
@@ -1246,4 +1245,86 @@ section{
 }
 [data-aos].aos-animate {
   pointer-events: auto;
+}
+
+
+/* Skill Item Styles */
+.skill-item {
+  margin-bottom: 30px;
+  flex: 0 1 calc(50% - 20px);
+  box-sizing: border-box;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .skill-item {
+      flex: 0 1 100%;
+  }
+}
+
+/* Plot Card Styles */
+.plot-card {
+  background-color: #fff;
+  border-radius: var(--card-radius);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease-in-out;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.plot-card:hover {
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.plot-card-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+}
+
+.plot-card-title {
+  display: block;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 15px 10px 15px 10px;
+  color: var(--dark-color);
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-bottom: 15px;
+}
+
+.skill-radar-plot {
+  width: 100%;
+  height: 500px;  /* Adjust as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.skill-radar-plot > div {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .plot-card {
+      margin-bottom: 20px;
+  }
+}
+
+/* Center the skills content */
+.skills-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 400px;
 }

@@ -18,6 +18,8 @@
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
         rel="stylesheet">
 
+        <script src="https://cdn.plot.ly/plotly-latest.min.js" crossorigin="anonymous"></script>
+
         <!-- Vendor CSS Files -->
         <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
         <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
@@ -253,23 +255,46 @@
                         </ul>
                     </div>
                 </div>
-
-                <div class="row skills-content" data-aos="fade-up" data-aos-delay="100">
-                    {% for skill in skills %}
-                        <div class="col-lg-6 portfolio-item filter-{{ skill.category.tag }}">
-                            <div class="progress">
-                                <span class="skill">{{ skill.name }} <i class="val">{{ skill.level }}%</i></span>
-                                <div class="progress-bar-wrap">
-                                    <div class="progress-bar" role="progressbar" style="width: {{ skill.level }}%" aria-valuenow="{{ skill.level }}" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="row skills-content justify-content-center" aos="fade-up" aos-delay="100">
+                    {% for item in skill_plots_with_categories %}
+                        <div class="col-lg-6 mb-4 portfolio-item skill-item filter-{{ item.category.tag }}">
+                            <div class="plot-card">
+                                <div class="plot-card-content">
+                                    <h3 class="plot-card-title">{{ item.category.name }}</h3>
+                                    <div class="skill-radar-plot">
+                                        {{ item.radar_plot|safe }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     {% endfor %}
                 </div>
-
             </div>
         </section>
         <!-- End Skills Section -->
+        
+                
+        <!-- End Skills Section -->        
+
+        <!-- Certifications Section -->
+        <!--<section id="certifications" class="certifications">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Certifications</h2>
+                    <p>Here you can find some of the certifications I've earned over the years.</p>
+                </div>
+                <div class="row">
+                    {% for certification in certifications %}
+                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+                            <div class="icon-box">
+                                <div class="icon"><i class="bi bi-file-earmark-certificate"></i></div>
+                                <h4><a href="">{{ certification.name }}</a></h4>
+                                <p>{{ certification.description }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>-->
 
         </main><!-- End #main -->
 
@@ -284,7 +309,10 @@
 
         <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
-
+        
+            <script>
+                
+            </script>
         <!-- Vendor JS Files -->
         <script src="{% static 'vendor/aos/aos.js' %}"></script>
         <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
@@ -293,10 +321,9 @@
         <script src="{% static 'vendor/typed.js/typed.min.js' %}"></script>
         <script src="{% static 'vendor/waypoints/noframework.waypoints.js' %}"></script>
 
-
         <!-- Template Main JS File -->
         <script src="{% static '/js/main.js' %}"></script>
-
+        
         <!--Boot Strap link-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"

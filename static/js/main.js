@@ -270,6 +270,29 @@
     }
   });
 
+  document.addEventListener('DOMContentLoaded', (event) => {
+    // Trigger resize after a short delay
+    setTimeout(() => {
+        window.dispatchEvent(new Event('resize'));
+    }, 100);
+
+    // Set up MutationObserver to watch for plot additions
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'childList') {
+                mutation.addedNodes.forEach((node) => {
+                    if (node.classList && node.classList.contains('plotly-graph-div')) {
+                        Plotly.Plots.resize(node);
+                    }
+                });
+            }
+        });
+    });
+
+    // Start observing the document with the configured parameters
+    observer.observe(document.body, { childList: true, subtree: true });
+  });
+
   /**
    * Animation on scroll
    */
@@ -281,10 +304,5 @@
       mirror: false
     })
   });
-
-  /**
-   * Initiate Pure Counter 
-   */
-  new PureCounter();
 
 })()
