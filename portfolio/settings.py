@@ -8,8 +8,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')  # Use a default for local development
 DEBUG = os.getenv('DEBUG')
 
+if os.getenv('FLY_APP_NAME'):
+    DEBUG = False
+
 ALLOWED_HOSTS = [
-    '.herokuapp.com',
+    '*',
     '.cris96spa.com',
     '127.0.0.1',
     'www.cris96spa.com',
