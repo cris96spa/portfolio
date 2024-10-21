@@ -1,21 +1,20 @@
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+SECRET_KEY = os.getenv('SECRET_KEY')  # Use a default for local development
+DEBUG = os.getenv('DEBUG')
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY', 'local_secret_key_for_test')  # Use a default for local development
-
-
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
-ALLOWED_HOSTS = [".herokuapp.com", ".cris96spa.com", "127.0.0.1", "www.cris96spa.com"]
-
-
-# Application definition
+ALLOWED_HOSTS = [
+    '.herokuapp.com',
+    '.cris96spa.com',
+    '127.0.0.1',
+    'www.cris96spa.com',
+    'localhost',
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -36,8 +35,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'home.middleware.WWWRedirectMiddleware',
 ]
+
+if not DEBUG:
+    MIDDLEWARE.append('home.middleware.WWWRedirectMiddleware')
 
 ROOT_URLCONF = 'portfolio.urls'
 

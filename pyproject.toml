@@ -1,0 +1,179 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "portfolio"
+version = "0.0.3"
+authors = [{ name = "Cristian" }]
+description = "Personal Portfolio"
+license = { text = "Proprietary" }
+readme = "README.md"
+classifiers = ["Private :: Do not Upload"]
+requires-python = ">=3.12.6"
+
+# list of project dependencies
+dependencies = [
+    # because pyyaml 6.0.0 is broken with Cython3
+    "pyyaml==6.0.1",
+]
+
+[tool.setuptools]
+packages = ["portfolio"]
+# optional grouped dependencies that are installed only when explicitly set
+[project.optional-dependencies]
+# dev dependencies are installed during development but no for package
+dev = [
+    "mypy",
+    "Django",
+    "awsebcli",
+    "botocore",
+    "cement",
+    "colorama",
+    "distlib",
+    "dj-database-url",
+    "gunicorn",
+    "jmespath",
+    "jupyter_client",
+    "nest-asyncio",
+    "pathspec",
+    "psycopg2-binary",
+    "semantic-version",
+    "sqlparse",
+    "pytest",
+    "termcolor",
+    "pytest-cov",
+    "pytest-mock",
+    "pytest-asyncio",
+    "pytest-xdist[psutil]",
+    "ruff",
+    "ipykernel",
+    "numpy>=1.24.4",
+    "jupyter>=1.0.0",
+    "jupyterlab>=4.0.2",
+    "fsspec>=2023.6.0",
+    "pydantic",
+    "uvicorn",
+    "typer",
+    "fastapi",
+    "python-multipart",
+    "altair",
+    "ydata-profiling",
+    "whitenoise",
+    "python-dotenv",
+
+]
+
+# dependencies needed to build package
+build = ["twine", "build"]
+
+[tool.uv]
+# Configuration for uv, the package manager
+index-url = "https://pypi.org/simple"
+
+[tool.ruff]
+
+line-length = 79
+indent-width = 4
+target-version = "py312"
+exclude = ["tests"]
+
+[tool.ruff.lint]
+fixable = ["ALL"]
+select = [
+    "F",
+    "W",
+    "E",
+    "I",
+    "N", # names,
+    #"D", # docstrings
+    "UP",
+    "ANN",   # annotations
+    "ASYNC",
+    #"S",  # security
+    #"BLE" # blind exception
+    #"FBT", # boolean trap
+    "B",
+    "A",
+    "COM",
+    # "CPY", # copyright
+    #"C4", # comprehension
+    #"DTZ", # datetime
+    "T10",
+    #"DJ", # django
+    #"EM", # error message
+    #"EXE", # executable
+    #"FA", # future annotations
+    "ISC",
+    "ICN",
+    "G",
+    "INP",
+    "PIE",
+    "T20",
+    "PYI",
+    "PT",
+    "Q",
+    "RSE",
+    #"RET", # return
+    "SLF",
+    "SLOT",
+    "SIM",  # simplify
+    "TID",
+    "TCH",
+    "INT",
+    "ARG",
+    #"PTH", # pathlib
+    #"TD, # todos
+    #"FIX", # fixmes
+    "ERA",
+    #"PGH", # pygrep hooks
+    "PL",
+    #"TRY", # excception handling,
+    #"FLY", # f-strings
+    "NPY",
+    #"AIR", # airflow
+    #"PERF", # performance
+    #"FURB", # refurb
+    "LOG",
+    #"RUF", # ruff specific
+]
+ignore = [
+    "B008",
+    "PLR0913",
+    "PLR0912",
+    "PLR2004",
+    "EM102",
+    "E501",
+    "G004",
+    "RSE102",
+    "COM812",
+    "ISC001",
+    "Q000",
+    "Q003",
+    "PLR0915",
+    "PLR0911",
+]
+
+[tool.ruff.format]
+quote-style = "single"
+
+indent-style = "space"
+
+skip-magic-trailing-comma = false
+
+line-ending = "auto"
+
+docstring-code-format = false
+
+docstring-code-line-length = "dynamic"
+# Like Black, use double quotes for strings.
+# Like Black, indent with spaces, rather than tabs.
+# Like Black, respect magic trailing commas.
+# Like Black, automatically detect the appropriate line ending.
+# Enable auto-formatting of code examples in docstrings. Markdown,
+# reStructuredText code/literal blocks and doctests are all supported.
+# Set the line length limit used when formatting code snippets in
+# docstrings.
+#
+# This only has an effect when the `docstring-code-format` setting is
+# enabled.
