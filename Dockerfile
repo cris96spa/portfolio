@@ -15,17 +15,20 @@ RUN apt-get update && apt-get install -y \
 
 RUN mkdir -p /code
 
-WORKDIR /code
+WORKDIR /app
 
 RUN pip install poetry
 COPY ./pyproject.toml ./pyproject.toml
 RUN uv pip compile pyproject.toml --extra dev -o requirements.txt --extra-index-url https://pypi.org/simple/ --no-cache
 RUN pip install -r requirements.txt --extra-index-url https://pypi.org/simple/ --no-cache
-COPY . /code
+COPY . /app
 
 ENV SECRET_KEY "mMV6vgXTs9qs3flESOrCkA0WDwgO96rWtnoTKqiaRAJug9u5qU"
-RUN python manage.py collectstatic --noinput
 
 EXPOSE 8000
+RUN python manage.py collectstatic --noinput
+RUN python manage.py makemigrations
+RUN python manage.py migrate
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# CMD ["gunicorn", "--bind", "0.0.0.0:8000", "portfolio.wsgi:application"]
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "2", "--worker-class", "uvicorn.workers.UvicornWorker", "handlers.asgi"]
