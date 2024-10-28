@@ -76,3 +76,12 @@ docker-push:
 	docker push portfolio:$(BRANCH_NAME)
 
 docker-setup: docker-build docker-tag docker-run 
+
+# === DEPLOYMENT DOCKER COMPOSE
+docker-compose-build:
+	docker-compose build
+
+docker-compose-up:
+	docker-compose up
+
+docker-compose-setup: docker-compose-build docker-compose-up

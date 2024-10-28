@@ -1,9 +1,14 @@
 version: "3.12"
+
 services:
   web:
-    image: portfolio
     build: .
-    ports:
-      - "8000:8000"
+    command: gunicorn --bind 0.0.0.0:8000 portfolio.wsgi:application
+    volumes:
+      - .:/app
+    expose:
+      - "8000"
     env_file:
       - .env
+    environment:
+      DJANGO_SETTINGS_MODULE: portfolio.settings

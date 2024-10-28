@@ -1,2 +1,13 @@
-fly.toml
 .git/
+venv/
+__pycache__/
+.github/
+.gitignore
+.hooks/
+.pytest_cache/
+.__pycache__
+.ruff_cache
+.uv_cache
+.vscode/
+.test/
+.pytest_cache/
