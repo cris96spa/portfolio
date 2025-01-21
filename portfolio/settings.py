@@ -24,7 +24,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ALLOWED_HOSTS = [
-    'portfolio-env.eba-xxn7sggf.eu-west-3.elasticbeanstalk.com',
+    'cris-spa-portfolio-1f83c68ea624.herokuapp.com',
     '.cris96spa.com',
     '127.0.0.1',
     'www.cris96spa.com',

@@ -26,15 +26,11 @@ packages = ["portfolio"]
 dev = [
     "mypy",
     "Django",
-    "awsebcli",
-    "botocore",
-    "cement",
     "colorama",
     "distlib",
     "dj-database-url",
     "gunicorn",
     "jmespath",
-    "jupyter_client",
     "nest-asyncio",
     "pathspec",
     "psycopg2-binary",
@@ -47,21 +43,15 @@ dev = [
     "pytest-asyncio",
     "pytest-xdist[psutil]",
     "ruff",
-    "ipykernel",
-    "numpy>=1.24.4",
-    "jupyter>=1.0.0",
-    "jupyterlab>=4.0.2",
     "fsspec>=2023.6.0",
     "pydantic",
     "uvicorn",
     "typer",
     "fastapi",
     "python-multipart",
-    "altair",
     "ydata-profiling",
     "whitenoise",
     "python-dotenv",
-
 ]
 
 # dependencies needed to build package
